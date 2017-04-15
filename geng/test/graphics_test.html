@@ -1,0 +1,40 @@
+<html>
+<head>
+    <script src='../graphics/simplex-noise.js/simplex-noise.js'></script>
+    <script src='../graphics/primitives/geometry.js'></script>
+    <script src='../graphics/hex/hex.js'></script>
+    <script src='../graphics/hex/hexmap.js'></script>
+    <script src='../graphics/primitives/sprite.js'></script>
+</head>
+<body>
+    <div id='geometry_test'>
+        <h2>Geometry</h2>
+        <canvas id='geometry' width=600, height=400></canvas>
+    </div>
+    <div id='sprite_test'>
+        <h2>Sprite</h2>
+        <canvas id='sprite' width=600, height=400></canvas>
+    </div>
+    <script>
+        var gc = document.getElementById('geometry').getContext('2d');
+
+        // MAP GEN TEST
+        var map_gen = new MapGenerator();
+        var map = map_gen.generate_hex_map(5);
+        var L = new Layout(h_aligned, new Vec2D(20, 20), new Vec2D(300, 200));
+        gc.lineWidth = '1';
+        gc.fillStyle = "#FF0000";
+        gc.translate(0.5, 0.5);
+        map.as_list().forEach(function(hex) {
+            hex.draw(gc, L);
+        });
+
+        var s_gc = document.getElementById('sprite').getContext('2d');
+        var tex = new Texture();
+        tex.set_src('mapPack_spritesheet.png', new Rect(0, 0, 100, 100));
+        var sprite = new Sprite();
+        sprite.set_tex(tex);
+        sprite.draw(s_gc);
+    </script>
+</body>
+</html>

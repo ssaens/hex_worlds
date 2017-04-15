@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            color: black;
+        }
+        canvas {
+            position: absolute;
+        }
+    </style>
+    
+    <script src='./main.js'></script>
+    <script src='./geng/graphics/primitives/geometry.js'></script>
+    <script src='./geng/graphics/hex/hex.js'></script>
+    <script src='./geng/graphics/hex/hexmap.js'></script>
+    <script src='./geng/graphics/simplex-noise.js/simplex-noise.js'></script>
+    <script src='./geng/graphics/primitives/sprite.js'></script>
+    
+</head>
+    
+<body>
+    <canvas id='background'></canvas>
+    <canvas id='stars'></canvas>
+    <canvas id='map'></canvas>
+    <script>
+        var dt = 200;
+        var world = new World();
+        world.main();
+        setInterval(function() {world.update(16.667)}, 16.667);
+    </script>
+        
+</body>
+</html>

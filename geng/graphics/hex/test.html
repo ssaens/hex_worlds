@@ -1,0 +1,35 @@
+<html>
+<head>
+    <script src=../primitives/primitives.js></script>
+    <script src=hex.js></script>
+    <style>
+        canvas {
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <canvas id='myCanvas' width=1000px height=1000px></canvas>
+    <script>
+        var map = [];
+        for (var q = -5; q <= 5; ++q) {
+            for (var r = -5; r <= 5; ++r) {
+                map.push(new Hex(q, r));
+            }
+        }
+        var L = new Layout(h_aligned, new Vec2D(40, 40), new Vec2D(500, 500));
+        var canvas = document.getElementById('myCanvas');
+        var gc = canvas.getContext('2d');
+        gc.lineWidth = '1';
+        gc.fillStyle = "#FF0000";
+        gc.translate(0.5, 0.5);
+        map.forEach(function(hex) {
+            hex.draw(gc, L);
+        });
+        var path = hex_path(map[0], map[map.length - 1]);
+        path.forEach(function(hex) {
+            hex.draw(gc, L, opts={lineWidth: 1, color: '#000000', fill: "rgba(255, 255, 255, 255)"})
+        })
+    </script>
+</body>
+</html>

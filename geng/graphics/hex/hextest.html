@@ -1,0 +1,25 @@
+<html>
+<head>
+    <script src='simplex-noise.js/simplex-noise.js'></script>
+    <script src='../geng/graphics/primitives/vector.js'></script>
+    <script src='../geng/graphics/hex/hex.js'></script>
+    <script src='mapgen.js'></script>
+</head>
+<body>
+    SIMPLEX TEST
+    <canvas id='myCanvas' width=800 height=600></canvas>
+    <script>
+        var map_gen = new MapGenerator();
+        var map = map_gen.generate_tri_map(5);
+        var L = new Layout(h_aligned, new Vec2D(20, 20), new Vec2D(400, 300));
+        var canvas = document.getElementById('myCanvas');
+        var gc = canvas.getContext('2d');
+        gc.lineWidth = '1';
+        gc.fillStyle = "#FF0000";
+        gc.translate(0.5, 0.5);
+        map.as_list().forEach(function(hex) {
+            hex.draw(gc, L);
+        });
+    </script>
+</body>
+</html>
