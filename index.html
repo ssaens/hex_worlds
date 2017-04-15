@@ -13,6 +13,17 @@
         canvas {
             position: absolute;
         }
+        button {
+            position: fixed;
+            right: 0;
+            top: 0;
+            margin: 20px;
+            padding: 10px 40px;
+            border: none;
+            background: green;
+            color: white;
+            cursor: pointer;
+        }
     </style>
     
     <script src='./main.js'></script>
@@ -29,11 +40,14 @@
     <canvas id='stars'></canvas>
     <canvas id='map'></canvas>
     <script>
-        var dt = 200;
+        var fps = 60;
         var world = new World();
         world.main();
-        setInterval(function() {world.update(16.667)}, 16.667);
+        setInterval(function() {world.update(1/ fps)}, 1 / fps);
     </script>
-        
+    <button id='make_world' onclick='world.reroll_map();'>Make World</button>
+    <script>
+        world.draw_map();
+    </script> 
 </body>
 </html>

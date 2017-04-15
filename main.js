@@ -166,6 +166,14 @@ function World() {
             this.tiles[i].draw(gc, this.L);
         }
     }
+
+    this.reroll_map = function() {
+        this.gen.seed_e(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER));
+        this.gen.seed_m(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER));   
+        this.make_map();
+        this.draw_map();
+    }
+
 }
 
 function TextureManager() {

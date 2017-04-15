@@ -27,21 +27,29 @@ function MapGenerator(opts = {
         island : false,
     }) {
 
-    this.e_seed = Math.round(Math.random() * Number.MAX_SAFE_INT);
-    this.m_seed = Math.round(Math.random() * Number.MAX_SAFE_INT) ^ this.e_seed;
-    this.e_gen = new SimplexNoise(this.e_seed);
-    this.m_gen = new SimplexNoise(this.m_seed);
+    this.e_seed = Math.floor(Math.random() * Number.MAX_SAFE_INT);
+    this.m_seed = Math.floor(Math.random() * Number.MAX_SAFE_INT) ^ this.e_seed;
+    this.e_gen = new SimplexNoise();
+    this.m_gen = new SimplexNoise();
     this.elev_weights = opts.elev_weights;
     this.moist_weights = opts.moist_weights;
     this.e = opts.e;
     this.island = opts.island;
+
+    this.seed_e = function(seed) {
+        this.e_seed = seed;
+    }
+
+    this.seed_m = function(seed) {
+        this.m_seed = seed;
+    }
     
     this.e_noise = function(x, y) {
-        return this.e_gen.noise2D(x, y) / 2 + 0.5;
+        return this.e_gen.noise2D(x - this.e_seed, y - this.e_seed ) / 2 + 0.5;
     }
 
     this.m_noise = function(x, y) {
-        return this.m_gen.noise2D(x, y) / 2 + 0.5;
+        return this.m_gen.noise2D(x - this.m_seed, y - this.m_seed) / 2 + 0.5;
     }
 
     this.generate_hex_map = function(radius, layout) {
