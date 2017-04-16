@@ -43,7 +43,7 @@
         var fps = 60;
         var world = new World();
         world.main();
-        setInterval(function() {world.update(1/ fps)}, 1 / fps);
+        setInterval(function() {world.update(1000 / fps)}, 1000 / fps);
     </script>
     <button id='make_world' onclick='world.reroll_map();'>Make World</button>
     <script>
